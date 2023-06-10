@@ -48,8 +48,8 @@ const PsychologistSignUp = () => {
   const { email, password, confirmPassword, name, surname } = formData;
 
   return (
-    <Container>
-      <div className="form-con containerForm">
+    <Container className="d-flex containerForm2">
+      <div className="form-con">
         <h2>Psikolog Kayıt Ol</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="name">
@@ -103,7 +103,7 @@ const PsychologistSignUp = () => {
             />
           </Form.Group>
           <div className="text-center">
-            <Button variant="primary" type="submit">Kayıt Ol</Button>
+            <Button variant="btn custom-btn-primary" type="submit">Kayıt Ol</Button>
           </div>
         </Form>
       </div>
