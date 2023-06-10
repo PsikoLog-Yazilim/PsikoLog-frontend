@@ -69,10 +69,11 @@ const PatientSignUp = () => {
           </Form.Group>
           <Form.Group controlId="surname">
             <Form.Label>Soyisim:</Form.Label>
-            <Form.Control
+            <Form.Control 
               type="text"
               name="surname"
               value={surname}
+              className="custom-form-control"
               onChange={handleInputChange}
               required
             />
@@ -89,7 +90,7 @@ const PatientSignUp = () => {
           </Form.Group>
           <Form.Group controlId="password">
             <Form.Label>Şifre:</Form.Label>
-            <Form.Control
+            <Form.Control className="custom-form-group"
               type="password"
               name="password"
               value={password}
@@ -99,7 +100,7 @@ const PatientSignUp = () => {
           </Form.Group>
           <Form.Group controlId="confirmPassword">
             <Form.Label>Şifre Tekrarı:</Form.Label>
-            <Form.Control
+            <Form.Control className="custom-form-group"
               type="password"
               name="confirmPassword"
               value={confirmPassword}
@@ -107,7 +108,9 @@ const PatientSignUp = () => {
               required
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Kayıt Ol</Button>
+          <div className="text-center">
+          <Button variant="btn custom-btn-primary" type="submit">Kayıt Ol</Button>
+          </div>
         </Form>
       </div>
     </Container>

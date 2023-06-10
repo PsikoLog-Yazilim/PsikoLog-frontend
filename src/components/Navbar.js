@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom';
 import "/home/arafta/Documents/projects/OKUL/Yazilim Mühendisliği/frontend2/PsikoLog-frontend/src/App.css";
 
@@ -39,12 +39,12 @@ const Navbar = (props) => {
             <li className="nav-item">
               <a className="nav-link" href="/psychologists">Psikologlar</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/chatbot">ChatBot</a>
-            </li>
             {props.isLoggedIn ? (
             <>
             { }
+            <li className="nav-item">
+              <a className="nav-link" href="/chatbot">ChatBot</a>
+            </li>
               <li className="nav-item">
                  <a className='nav-link' href="/appointments">Randevular</a> 
               </li> 
