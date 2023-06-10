@@ -49,6 +49,10 @@
   color : red !important;
 }
 
+.containerRenk {
+  background-color: rgb(224, 224, 224);
+}
+
 .containerForm {
   margin-top: 30vh !important;
   justify-content: center !important;
@@ -70,6 +74,10 @@
   align-items: center !important;
   min-height: 80vh !important;
   
+}
+
+.buton-cikis{
+  margin-left: 400px !important;
 }
 
 .custom-card {
@@ -114,9 +122,21 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.psikologyazisitop{
+  margin-top: 30px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
 .custom-btn-primary:hover {
   background-color: #000000;
+}
+
+.butonProfil{
+  justify-content: center;
+  margin-top: 30px;
+}
+.butonProfil:hover{
+  background-color: rgb(130, 130, 197);
 }
 
 
@@ -149,6 +169,29 @@
 .button-primary:hover {
   background-color: #0069d9;
   border-color: #0062cc;
+}
+
+.psikologrenk {
+  background-color: rgb(7, 7, 7);
+
+}
+
+.psikologisim{
+  margin-top: 35px;
+  
+}
+.psychologist-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.psychologist-surname {
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
+
+.card-body h4 {
+  display: none;
 }
 
 

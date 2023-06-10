@@ -17,7 +17,7 @@ const Navbar = (props) => {
 
   return (
 
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light containerRenk">
       <div className="container">
         <a className="navbar-brand logo-Psiko" href="/">PsikoLog</a>
         <button
@@ -50,8 +50,8 @@ const Navbar = (props) => {
               </li> 
               <li classname= "nav-item">
                 <a className='nav-link' href="/messages">Mesajlarım</a>
-                </li>
-              <button onClick={handleLogout}>Çıkış Yap</button>
+                </li >
+              <button className='buton-cikis'  onClick={handleLogout}>Çıkış Yap</button>
               </>
             ) : (
               <>

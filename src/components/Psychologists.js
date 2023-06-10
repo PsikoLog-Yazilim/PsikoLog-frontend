@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PSYCHOLOGISTS_FETCHED } from "../constants/ActionTypes";
 import appStore from "../stores/AppStore";
 import { getPsychologists } from "../actions/AppActions";
@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Psychologists = () => {
   const [psychologists, setPsychologists] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const psychologistsPerPage = 5;
 
   useEffect(() => {
     getPsychologists();
@@ -20,16 +22,64 @@ const Psychologists = () => {
       appStore.off(PSYCHOLOGISTS_FETCHED, handlePsychologistsFetched);
     };
   }, []);
+  
+  
+  const renderPageNumbers = () => {
+    const pageNumbers = Math.ceil(psychologists.length / psychologistsPerPage);
 
+    return (
+      <ul className="pagination">
+        {Array.from({ length: pageNumbers }, (_, index) => (
+          <li
+            key={index + 1}
+            className={currentPage === index + 1 ? "page-item active" : "page-item"}
+          >
+            <button
+              className="page-link"
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
-    <div>
-      <h1>Psikologlar</h1>
-      {psychologists.map((psychologist) => (
-        <div key={psychologist.id}>
-          <Link to={`/psychologists/${psychologist.id}`}>
-            {psychologist.name} {psychologist.surname}
-          </Link>
+    <div className="container">
+      <div className="text-center mb-5 psikologyazisitop">
+        <h3>Psikologlar</h3>
+      </div>
+      {psychologists.map((psychologist, index) => (
+        <div className="card mb-5" key={index}>
+          <div className="card-body">
+            <div className="row">
+              <div className="col-sm-12">
+                <h4 className="h5">Psikolog</h4>
+              </div>
+              <div className="col-sm-2">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" className="rounded-circle user_img" alt="Psychologist"  
+                style={{ width: "100px", height: "100px" }}/>
+              </div>
+              <div className="col-sm-8">
+                <div className="d-flex flex-column flex-lg-row">
+                  <div className="row flex-fill">
+                    <div className="col-sm-5 psikologisim">
+                      
+                      <h5 className="psychologist-name">{psychologist.name} {psychologist.surname}</h5>
+                      
+                   
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-2">
+                <button  type="button" className="btn btn-secondary btn-rounded butonProfil" >Profil</button>
+                </div>
+            </div>
+          </div>
         </div>
       ))}
     </div>
