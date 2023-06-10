@@ -16,7 +16,8 @@ function SendMessage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getPsychologist({ id: psychologistId });
+        //burası psychologistId
+        getPsychologist({ id: 2 });
 
         const handlePsychologistFetched = (psychologist) => {
             setPsychologist(psychologist);

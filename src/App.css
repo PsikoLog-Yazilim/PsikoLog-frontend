@@ -59,6 +59,71 @@
   align-items: center !important;
   min-height: 100vh !important;
   
+/* Mesaj kutusu ve mesajlar için stil */
+.card {
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.chatBaslikisim{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.chat-message-right {
+  flex-direction: row-reverse;
+}
+
+.chat-message-left .chat-message-content {
+  background-color: #f1f0f0;
+}
+
+.chat-message-right .chat-message-content {
+  background-color: #DCF8C6;
+}
+
+.chat-message-content {
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+/* Mesaj giriş alanı ve gönder butonu */
+.card-footer {
+  border-top: none;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+
+
+
   
 }
 .form-con{
@@ -137,6 +202,41 @@
 }
 .butonProfil:hover{
   background-color: rgb(130, 130, 197);
+}
+
+/* Message.css */
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message-right {
+  text-align: right;
+}
+
+.chat-message-left {
+  text-align: left;
+}
+
+.chat-message-content {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.card-footer {
+  border-top: none;
+}
+
+.card-footer .input-group {
+  margin-top: 10px;
+}
+
+.card-footer input {
+  border-radius: 0;
+}
+
+.card-footer button {
+  border-radius: 0;
 }
 
 
