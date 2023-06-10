@@ -51,7 +51,7 @@ const PatientSignIn = ({ setIsLoggedIn }) => {
   const { email, password } = formData;
 
   return (
-    <Container className="d-flex containerForm2">
+    <Container style={{width: "95%"}} className="d-flex containerForm2">
       <div className="form-con">
         <h2>Hasta Giriş Yap</h2>
         <Form onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ const PatientSignIn = ({ setIsLoggedIn }) => {
             />
           </Form.Group>
           <div className="text-center">
-          <Button variant="btn custom-btn-primary" type="submit">Giriş Yap</Button>
+          <Button variant="btn custom-btn-primary" type="submit" style={{ margin: '5px' }}>Giriş Yap</Button>
           </div>
         </Form>
       </div>

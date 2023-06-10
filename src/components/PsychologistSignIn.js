@@ -82,7 +82,7 @@ const PsychologistSignIn = ({ setIsLoggedIn }) => {
                   />
                 </div>
                 <div className="text-center">
-                  <button type="submit" className="custom-btn-primary ">Giriş Yap</button>
+                  <button type="submit" className="custom-btn-primary " style={{ margin: '5px' }}>Giriş Yap</button>
                 </div>
               </form>
             </div>
@@ -94,4 +94,3 @@ const PsychologistSignIn = ({ setIsLoggedIn }) => {
 };
 
 export default PsychologistSignIn;
-

@@ -1,17 +1,10 @@
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from 'react';
 import messageStore from '../stores/MessageStore';
 import { getChatHistory, getParticipants, sendMessage } from '../actions/MessageActions';
 import { CHAT_HISTORY_FETCHED, MESSAGE_SENT, PARTICIPANTS_FETCHED } from '../constants/ActionTypes';
 import jwt_decode from 'jwt-decode';
+import { Container, Card, ListGroup } from 'react-bootstrap';
+import { BsPerson } from 'react-icons/bs';
 
 const Messages = () => {
     const [users, setUsers] = useState(null); // User; id, name, surname icerir
@@ -70,46 +63,49 @@ const Messages = () => {
     };
 
     return (
-        <div>
-            <h1>Mesajlarım Sayfası</h1>
+        <Container className="d-flex justify-content-center align-items-center mt-5">
+          <Card className="p-4" style={{width: "95%"}}>
+          <h2 className="text-center">Mesajlarım Sayfası</h2>
             <div>
-                <h2>Kullanıcılar</h2>
-                <ul>
-                    {users && users.map(user => (
-                        <li
-                            key={user.id}
-                            onClick={() => handleUserSelection(user)}
-                            style={{ cursor: 'pointer', color: 'blue' }}
-                        >
-                            <b>{user.name} {user.surname}</b>
-                        </li>
+              <h2>Kullanıcılar</h2>
+              <ListGroup>
+                {users && users.map(user => (
+                  <ListGroup.Item
+                    key={user.id}
+                    onClick={() => handleUserSelection(user)}
+                    action
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <BsPerson className="mr-2" />
+                    <b>{user.name} {user.surname}</b>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </div>
+            <div>
+              <h2>Geçmiş Mesajlar</h2>
+              {selectedUser && messages && (
+                <>
+                  <h3>{selectedUser.name} {selectedUser.surname}</h3>
+                  <ul>
+                    {messages.map((message, index) => (
+                      <li key={index}>
+                        {message.sender_id === myId ? <h4>Ben: </h4> : <h4>Psikolog: </h4>}{message.message}
+                      </li>
                     ))}
-                </ul>
+                  </ul>
+                  <input
+                    type="text"
+                    value={newMessage}
+                    onChange={e => setNewMessage(e.target.value)}
+                  />
+                  <button onClick={handleSendMessage}>Gönder</button>
+                </>
+              )}
             </div>
-            <div>
-                <h2>Geçmiş Mesajlar</h2>
-                {selectedUser && messages && (
-                    <>
-                        <h3>{selectedUser.name} {selectedUser.surname}</h3>
-                        <ul>
-                            {messages.map((message, index) => (
-                                <li
-                                    key={index}>
-                                    {message.sender_id === myId ? <h4>Ben: </h4> : <h4>Psikolog: </h4>}{message.message}
-                                </li>
-                            ))}
-                        </ul>
-                        <input
-                            type="text"
-                            value={newMessage}
-                            onChange={e => setNewMessage(e.target.value)}
-                        />
-                        <button onClick={handleSendMessage}>Gönder</button>
-                    </>
-                )}
-            </div>
-        </div>
-    );
+          </Card>
+        </Container>
+      );
 
 }
 

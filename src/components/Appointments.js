@@ -8,6 +8,9 @@ import patientStore from "../stores/PatientStore";
 import { approveAppointment, declineAppointment } from "../actions/PsychologistActions";
 import psychologistStore from "../stores/PsychologistStore";
 import { PATIENT, PSYCHOLOGIST } from "../constants/UserTypes";
+import { Container, Card, Button } from 'react-bootstrap';
+import { BsCheck, BsX } from 'react-icons/bs';
+
 const Appointments = () => {
 
     const token = localStorage.getItem('token');
@@ -22,7 +25,12 @@ const Appointments = () => {
         getAppointments({ id, userType });
 
         const handleAppointmentsFetched = (data) => {
-            setAppointments(data);
+            const formattedAppointments = data.map((appointment) => {
+                const date = new Date(appointment.appointment_date);
+                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                return { ...appointment, appointment_date: formattedDate };
+            });
+            setAppointments(formattedAppointments);
         };
 
         const handleAppointmentDeleted = () => {
@@ -74,38 +82,58 @@ const Appointments = () => {
         declineAppointment(appointmentId);
     }
 
+    
+
     return (
-        <div>
-            <h1>Randevu Talepleri</h1>
-            <ul>
-                {userType === PATIENT && appointments.map((appointment) => (
-                    <li key={appointment.id}>
-                        <p>Durum: {appointment.status !== "pending" ? appointment.status : <button onClick={() => handleCancelAppointment(appointment.id)}>İptal Et</button>}</p>
-                        <p>Randevu Tarihi: {appointment.appointment_date}</p>
-                        <p>Randevu Saati: {appointment.appointment_time}</p>
-                        <p>Ad: {appointment.name}</p>
-                        <p>Soyad: {appointment.surname}</p>
-                        <p>Email: {appointment.email}</p>
-                    </li>
-                ))}
-                {userType === PSYCHOLOGIST && appointments.map((appointment) => (
-                    <li key={appointment.id}>
-                        <p>Durum: {appointment.status !== "pending" ? appointment.status :
-                            <div>
-                                <button onClick={() => handleApproveAppointment(appointment.id)}>Onayla</button>
-                                <button onClick={() => handleDeclineAppointment(appointment.id)}>Reddet</button>
-                            </div>
-                        }</p>
-                        <p>Randevu Tarihi: {appointment.appointment_date}</p>
-                        <p>Randevu Saati: {appointment.appointment_time}</p>
-                        <p>Ad: {appointment.name}</p>
-                        <p>Soyad: {appointment.surname}</p>
-                        <p>Email: {appointment.email}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Container className="d-flex justify-content-center align-items-center mt-5">
+            <div style={{ width: "95%"}}>
+            <h2 className="text-center">Randevu Talepleri</h2>
+                <Card className="bg-white mb-3" style={{ width: '85%', margin: '0 auto' }}>
+                    <Card.Body style={{ padding: '1rem' }}>
+                        <div className="card-container">
+                            {appointments.map((appointment) => (
+                                <Card key={appointment.id} className="mb-3">
+                                    <Card.Body>
+                                        <Card.Title>
+                                            Durum:{" "}
+                                            {appointment.status !== "pending" ? (
+                                                appointment.status === "approved" ? (
+                                                    <span style={{ color: "green" }}>Onaylandı</span>
+                                                ) : appointment.status === "declined" ? (
+                                                    <span style={{ color: "red" }}>Reddedildi</span>
+                                                ) : (
+                                                    <span>Yanıtlanmadı</span>
+                                                )
+                                            ) : (
+                                                userType === PATIENT ? (
+                                                    <button style={{ margin: '5px' }} onClick={() => handleCancelAppointment(appointment.id)}>İptal Et</button>
+                                                ) : (
+                                                    <div>
+                                                        <button style={{ margin: '5px' }} onClick={() => handleApproveAppointment(appointment.id)}>
+                                                            <BsCheck />
+                                                        </button>
+                                                        <button style={{ margin: '5px' }} onClick={() => handleDeclineAppointment(appointment.id)}>
+                                                            <BsX />
+                                                        </button>
+                                                    </div>
+                                                )
+                                            )}
+                                        </Card.Title>
+                                        <Card.Text>Randevu Tarihi: {appointment.appointment_date}</Card.Text>
+                                        <Card.Text>Randevu Saati: {appointment.appointment_time}</Card.Text>
+                                        <Card.Text>Ad: {appointment.name}</Card.Text>
+                                        <Card.Text>Soyad: {appointment.surname}</Card.Text>
+                                        <Card.Text>Email: {appointment.email}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            ))}
+                        </div>
+                    </Card.Body>
+                </Card>
+            </div>
+        </Container>
     );
+
 
 }
 

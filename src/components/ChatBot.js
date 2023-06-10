@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const API_KEY = "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";
+const API_KEY = "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";
 const systemMessage = {
   role: "system",
   content: "Explain things like you're talking to a software professional with 2 years of experience."
@@ -84,34 +84,29 @@ const ChatBot = () => {
 
   return (
     <div className="container chatBotContainer">
-      <div className="row clearfix">
+      <div style={{width: "95%"}} className="row clearfix">
         <div className="col-lg-12">
           <div className="card chat-app">
-          <div id="plist" class="people-list">
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        <p>ChatBot Geçmişi</p>
-                    </div>
-                    
+            <div id="plist" className="people-list">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <p>ChatBot Geçmişi</p>
                 </div>
-                <ul className="list-unstyled chat-list mt-2 mb-0">
-                    <li className="clearfix">
-                        
-                        <div className="about">
-                            <div className="name">ChatBot</div>
-                            <div className="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
-                        </div>
-                    </li>
-                    <li className="clearfix active">
-                        
-                        <div className="about">
-                            <div className="name">ChatBot</div>
-                            <div className="status"> <i class="fa fa-circle online"></i> online </div>
-                        </div>
-                    </li>
-                                   
-                    
-                </ul>
+              </div>
+              <ul className="list-unstyled chat-list mt-2 mb-0">
+                <li className="clearfix">
+                  <div className="about">
+                    <div className="name">ChatBot</div>
+                    <div className="status"> <i className="fa fa-circle offline"></i> left 7 mins ago </div>                                            
+                  </div>
+                </li>
+                <li className="clearfix active">
+                  <div className="about">
+                    <div className="name">ChatBot</div>
+                    <div className="status"> <i className="fa fa-circle online"></i> online </div>
+                  </div>
+                </li>
+              </ul>
             </div>
             <div className="chat">
               <div className="chat-header clearfix">
@@ -163,8 +158,6 @@ const ChatBot = () => {
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>

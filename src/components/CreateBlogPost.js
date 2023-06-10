@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { useEffect } from 'react';
 import psychologistStore from '../stores/PsychologistStore';
+import { Container, Card, Form, Button } from 'react-bootstrap';
+import { BsCardHeading, BsCardText } from 'react-icons/bs';
+
 const CreateBlogPost = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -43,28 +46,37 @@ const CreateBlogPost = () => {
     };
 
     return (
-        <div>
-            <h2>Yeni Blog Yazısı</h2>
-            <form onSubmit={handlePostSubmit}>
-                <div>
-                    <label>Yazı başlığı:</label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={handleTitleChange}
-                    />
+        <Container className="d-flex justify-content-center align-items-center mt-5">
+          <Card className="p-4" style={{width: "95%"}}>
+          <h2 className="text-center">Yeni Blog Yazısı</h2>
+            <Form onSubmit={handlePostSubmit}>
+              <Form.Group>
+                <Form.Label>Yazı başlığı:</Form.Label>
+                <div className="d-flex align-items-center">
+                  <BsCardHeading className="mr-2" />
+                  <Form.Control
+                    type="text"
+                    value={title}
+                    onChange={handleTitleChange}
+                  />
                 </div>
-                <div>
-                    <label>Yazı içeriği:</label>
-                    <textarea
-                        value={content}
-                        onChange={handleContentChange}
-                    />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Yazı içeriği:</Form.Label>
+                <div className="d-flex align-items-center">
+                  <BsCardText className="mr-2" />
+                  <Form.Control
+                    as="textarea"
+                    value={content}
+                    onChange={handleContentChange}
+                  />
                 </div>
-                <button type="submit">Paylaş</button>
-            </form>
-        </div>
-    );
+              </Form.Group>
+              <Button style={{ margin: '5px' }} type="submit">Paylaş</Button>
+            </Form>
+          </Card>
+        </Container>
+      );
 };
 
 export default CreateBlogPost;

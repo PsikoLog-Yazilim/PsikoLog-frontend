@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import appStore from '../stores/AppStore';
 import { getPsychologist } from '../actions/AppActions';
+import { Container, Card, Form, Button } from 'react-bootstrap';
+import { BsPerson } from 'react-icons/bs';
 
 const CreateAppointment = () => {
 
@@ -66,42 +68,60 @@ const CreateAppointment = () => {
     };
 
     return (
-        <div>
-            <h1>Psikologdan Randevu Al</h1>
-            {psychologist ? (<form onSubmit={handleSubmit}>
-                <div>
-                    <label>Psikolog Adı: {psychologist.name}</label>
-                </div>
-                <div>
-                    <label>Psikolog Soyadı: {psychologist.surname}</label>
-                </div>
-                <div>
-                    <label>Psikolog E-Posta: {psychologist.email}</label>
-                </div>
-                <div>
-                    <label>Randevu Tarihi:</label>
-                    <input
-                        type="date"
-                        name="appointmentDate"
-                        value={appointmentDate}
-                        onChange={handleDateChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Randevu Saati:</label>
-                    <input
-                        type="time"
-                        name="appointmentTime"
-                        value={appointmentTime}
-                        onChange={handleTimeChange}
-                        required
-                    />
-                </div>
-                <button type="submit">Randevu Talebi Et</button>
-            </form>) : (<p>Yükleniyor...</p>)}
-        </div>
-    );
+        <Container className="d-flex justify-content-center align-items-center mt-5">
+          <Card className="p-4" style={{width: "95%"}}>
+          <h2 className="text-center">Psikologdan Randevu Al</h2>
+            {psychologist ? (
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Psikolog Adı:</Form.Label>
+                  <div className="d-flex align-items-center">
+                    <BsPerson className="mr-2" />
+                    <Form.Control type="text" value={psychologist.name} readOnly />
+                  </div>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Psikolog Soyadı:</Form.Label>
+                  <div className="d-flex align-items-center">
+                    <BsPerson className="mr-2" />
+                    <Form.Control type="text" value={psychologist.surname} readOnly />
+                  </div>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Psikolog E-Posta:</Form.Label>
+                  <div className="d-flex align-items-center">
+                    <BsPerson className="mr-2" />
+                    <Form.Control type="text" value={psychologist.email} readOnly />
+                  </div>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Randevu Tarihi:</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="appointmentDate"
+                    value={appointmentDate}
+                    onChange={handleDateChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Randevu Saati:</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="appointmentTime"
+                    value={appointmentTime}
+                    onChange={handleTimeChange}
+                    required
+                  />
+                </Form.Group>
+                <Button style={{ margin: '5px' }} type="submit">Randevu Talebi Et</Button>
+              </Form>
+            ) : (
+              <p>Yükleniyor...</p>
+            )}
+          </Card>
+        </Container>
+      );
 };
 
 export default CreateAppointment;

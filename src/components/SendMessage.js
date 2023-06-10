@@ -6,6 +6,8 @@ import { PSYCHOLOGIST_FETCHED } from '../constants/ActionTypes';
 import { sendMessage } from '../actions/MessageActions';
 import messageStore from '../stores/MessageStore';
 import { MESSAGE_SENT } from '../constants/ActionTypes';
+import { Container, Card, Form, Button } from 'react-bootstrap';
+import { BsPerson } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
 function SendMessage() {
@@ -16,7 +18,6 @@ function SendMessage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        //burası psychologistId
         getPsychologist({ id: psychologistId });
 
         const handlePsychologistFetched = (psychologist) => {
@@ -43,27 +44,49 @@ function SendMessage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // Mesaj gönderme işlemleri burada gerçekleştirilebilir
         sendMessage({ to: psychologist.id, text: message});
     };
 
     return (
-        <div>
-            {psychologist ? (<div><h2>Mesaj Gönder</h2>
-            <div>
-                <label>Psikolog Adı: {psychologist.name}</label>
-            </div>
-            <div>
-                <label>Psikolog Soyadı: {psychologist.surname}</label>
-            </div>
-            <div>
-                <label>Mesaj:</label>
-                <input type="text" value={message} onChange={handleMessageChange} />
-            </div>
-            <button onClick={handleSubmit}>Gönder</button></div>) : (<p>Yükleniyor...</p>)}
-        </div>
-    );
+        <Container className="d-flex justify-content-start align-items-start mt-5" style={{ minHeight: '100vh' }}>
+        <Card className="text-center" style={{ width: '95%'}}>
+            <Card.Body>
+              <Card.Title>Mesaj Gönder</Card.Title>
+              {psychologist ? (
+                <>
+                  <div>
+                    <label>Psikolog Adı: {psychologist.name}</label>
+                  </div>
+                  <div>
+                    <label>Psikolog Soyadı: {psychologist.surname}</label>
+                  </div>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="message">
+                      <Form.Label>Mesaj:</Form.Label>
+                      <div className="input-group">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <BsPerson />
+                          </span>
+                        </div>
+                        <Form.Control
+                          type="text"
+                          value={message}
+                          onChange={handleMessageChange}
+                        />
+                      </div>
+                    </Form.Group>
+                    <Button variant="primary" type="submit" style={{ margin: '5px' }}>Gönder</Button>
+                  </Form>
+                </>
+              ) : (
+                <p>Yükleniyor...</p>
+              )}
+            </Card.Body>
+          </Card>
+        </Container>
+      );
+      
 }
 
 export default SendMessage;

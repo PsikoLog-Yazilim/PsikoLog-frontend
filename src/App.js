@@ -8,7 +8,7 @@ import PsychologistSignIn from './components/PsychologistSignIn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Psychologists from './components/Psychologists';
 import ChatBot from './components/ChatBot';
-import Navbar from './components/Navbar';
+import NavigationBar from './components/NavigationBar';
 import { setAuthToken } from './config';
 import PsychologistProfile from './components/PsychologistProfile';
 import CreateAppointment from './components/CreateAppointment';
@@ -40,9 +40,10 @@ function App() {
 
 
   return (
+
     <Router>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <NavigationBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route
             path="/"
@@ -103,7 +104,7 @@ function App() {
           <Route
             path="/sendMessage/:psychologistId"
             element={<ProtectedRoute element={<SendMessage />} type={PATIENT} />}
-            />
+          />
         </Routes>
       </div>
     </Router>

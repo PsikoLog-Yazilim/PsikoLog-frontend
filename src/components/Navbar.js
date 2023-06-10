@@ -1,6 +1,5 @@
-
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import "/home/arafta/Documents/projects/OKUL/Yazilim Mühendisliği/frontend2/PsikoLog-frontend/src/App.css";
 
 const Navbar = (props) => {
 
@@ -16,65 +15,31 @@ const Navbar = (props) => {
   };
 
   return (
-
-    <nav className="navbar navbar-expand-lg navbar-light containerRenk">
-      <div className="container">
-        <a className="navbar-brand logo-Psiko" href="/">PsikoLog</a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item deneme">
-              <a className="nav-link" href="/">Ana Sayfa</a>
+    <nav>
+      <ul>
+        <li><Link to="/">Ana Sayfa</Link></li>
+        <li><Link to="/psychologists">Psikologlar</Link></li>
+        <li><Link to="/chatbot">ChatBot</Link></li>
+        {props.isLoggedIn ? (
+          <>
+            {/* Giriş yapıldıktan sonra gösterilecek öğeler */}
+            <li>
+              <li><Link to="/appointments">Randevularım</Link></li>
+              <li><Link to="/messages">Mesajlarım</Link></li>
+              <button onClick={handleLogout}>Çıkış Yap</button>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/psychologists">Psikologlar</a>
-            </li>
-            {props.isLoggedIn ? (
-            <>
-            { }
-            <li className="nav-item">
-              <a className="nav-link" href="/chatbot">ChatBot</a>
-            </li>
-              <li className="nav-item">
-                 <a className='nav-link' href="/appointments">Randevular</a> 
-              </li> 
-              <li classname= "nav-item">
-                <a className='nav-link' href="/messages">Mesajlarım</a>
-                </li >
-              <button className='buton-cikis'  onClick={handleLogout}>Çıkış Yap</button>
-              </>
-            ) : (
-              <>
-              <li className='nav-item'>
-                <a className='nav-link' href="/patientSignUp">Hasta Kayıt</a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link' href="/patientSignIn" >Hasta Giriş</a>
-              </li>
-              <li className='nav-item'>
-              <a className='nav-link' href="/psychologistSignUp" >Psikolog Kayıt</a>
-            </li>
-            <li className='nav-item'>
-            <a className='nav-link' href="/psychologistSignIn" >Psikolog Giriş</a>
-          </li>
           </>
-
-
-            )}
-          </ul>
-        </div>
-      </div>
-    </nav>  
+        ) : (
+          <>
+            {/* Giriş yapılmadan önce gösterilecek öğeler */}
+            <li><Link to="/patientSignUp">Hasta Kayıt</Link></li>
+            <li><Link to="/patientSignIn">Hasta Giriş</Link></li>
+            <li><Link to="/psychologistSignUp">Psikolog Kayıt</Link></li>
+            <li><Link to="/psychologistSignIn">Psikolog Giriş</Link></li>
+          </>
+        )}
+      </ul>
+    </nav>
   );
 };
 

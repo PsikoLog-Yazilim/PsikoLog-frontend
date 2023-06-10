@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { getBlogPost } from '../actions/AppActions';
 import appStore from '../stores/AppStore';
 import { BLOG_POST_FETCHED } from '../constants/ActionTypes';
+import { Container, Card } from 'react-bootstrap';
+import { BsPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const BlogPost = () => {
@@ -31,14 +33,17 @@ const BlogPost = () => {
     }, [postId])
 
     return (
-        <div>
+        <Container className="d-flex justify-content-start align-items-start mt-5" style={{ minHeight: '100vh' }}>
+        <Card className="p-4" style={{ width: "95%"}}>
+        <h2 className="text-center">Blog Yazısı</h2>
             <Link to={`/psychologists/${psychologist.id}`}>
-                <p>Yazar: {psychologist.name} {psychologist.surname}</p>
+              <p><BsPersonFill className="mr-2" />Yazar: {psychologist.name} {psychologist.surname}</p>
             </Link>
             <h2>Yazı başlığı: {title}</h2>
             <p>Yazı içeriği: {content}</p>
-        </div>
-    );
+          </Card>
+        </Container>
+      );
 }
 
 export default BlogPost;

@@ -24,32 +24,12 @@ const Psychologists = () => {
   }, []);
   
   
-  const renderPageNumbers = () => {
-    const pageNumbers = Math.ceil(psychologists.length / psychologistsPerPage);
-
-    return (
-      <ul className="pagination">
-        {Array.from({ length: pageNumbers }, (_, index) => (
-          <li
-            key={index + 1}
-            className={currentPage === index + 1 ? "page-item active" : "page-item"}
-          >
-            <button
-              className="page-link"
-              onClick={() => setCurrentPage(index + 1)}
-            >
-              {index + 1}
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  };
+  
 
   return (
-    <div className="container">
+    <div className="container" style={{ width: "95%"}}>
       <div className="text-center mb-5 psikologyazisitop">
-        <h3>Psikologlar</h3>
+      <h2 className="text-center">Psikolog Listesi</h2>
       </div>
       {psychologists.map((psychologist, index) => (
         <div className="card mb-5" key={index}>
@@ -59,31 +39,38 @@ const Psychologists = () => {
                 <h4 className="h5">Psikolog</h4>
               </div>
               <div className="col-sm-2">
-                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" className="rounded-circle user_img" alt="Psychologist"  
-                style={{ width: "100px", height: "100px" }}/>
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                  className="rounded-circle user_img"
+                  alt="Psychologist"
+                  style={{ width: "100px", height: "100px" }}
+                />
               </div>
               <div className="col-sm-8">
                 <div className="d-flex flex-column flex-lg-row">
                   <div className="row flex-fill">
                     <div className="col-sm-5 psikologisim">
-                      
-                      <h5 className="psychologist-name">{psychologist.name} {psychologist.surname}</h5>
-                      
-                   
+                      <h5 className="psychologist-name">
+                        {psychologist.name} {psychologist.surname}
+                      </h5>
                     </div>
-
                   </div>
                 </div>
               </div>
               <div className="col-sm-2">
-                <button  type="button" className="btn btn-secondary btn-rounded butonProfil" >Profil</button>
-                </div>
+              <Link to={`/psychologists/${psychologist.id}`}>
+                <button type="button" className="btn btn-secondary btn-rounded butonProfil">
+                  Profil Sayfasına Git
+                </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       ))}
     </div>
   );
+  
 };
 
 export default Psychologists;

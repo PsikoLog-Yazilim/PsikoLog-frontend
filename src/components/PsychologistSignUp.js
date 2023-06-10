@@ -103,7 +103,7 @@ const PsychologistSignUp = () => {
             />
           </Form.Group>
           <div className="text-center">
-            <Button variant="btn custom-btn-primary" type="submit">Kayıt Ol</Button>
+            <Button variant="btn custom-btn-primary" type="submit" style={{ margin: '5px' }}>Kayıt Ol</Button>
           </div>
         </Form>
       </div>

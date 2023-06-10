@@ -53,7 +53,7 @@ const PatientSignUp = () => {
   const { email, password, confirmPassword, name, surname } = formData;
 
   return (
-    <Container className="d-flex containerForm2">
+    <Container style={{width: "95%"}} className="d-flex containerForm2">
       <div className="form-con">
         <h2>Hasta Kayıt Ol</h2>
         <Form onSubmit={handleSubmit}>
@@ -109,7 +109,7 @@ const PatientSignUp = () => {
             />
           </Form.Group>
           <div className="text-center">
-          <Button variant="btn custom-btn-primary" type="submit">Kayıt Ol</Button>
+          <Button variant="btn custom-btn-primary" type="submit" style={{ margin: '5px' }}>Kayıt Ol</Button>
           </div>
         </Form>
       </div>
